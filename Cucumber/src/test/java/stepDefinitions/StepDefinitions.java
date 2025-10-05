@@ -5,47 +5,47 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.When;
 import io.cucumber.java.en.Then;
 import org.openqa.selenium.WebDriver;
-import utilities.MyDriver;
 import pages.LoginPage;
+import utilities.MyDriver;
 import java.time.Duration;
 
 public class StepDefinitions {
 
     private WebDriver driver;
-    LoginPage loginPage;
+    private LoginPage loginPage;
 
     @Given("go to login page")
     public void goToLoginPage() {
-        driver = MyDriver.getDriver(); // WebDriver nesnesini MyDriver'dan alıyoruz
+        driver = MyDriver.getDriver();
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         driver.get("https://practicetestautomation.com/practice-test-login/");
         System.out.println("🔹 Sayfaya gidildi");
     }
 
-    @And("type username")
-    public void typeUsername() {
+    @And("user types username as {string}")
+    public void userTypesUsernameAs(String username) {
         loginPage = new LoginPage(driver);
-        loginPage.setUsername("student");
-        System.out.println("🔹 Kullanıcı adı dolduruldu");
+        loginPage.setUsername(username);
+        System.out.println("🔹 Kullanıcı adı girildi: " + username);
     }
 
-    @And("type password")
-    public void typePassword() {
-        loginPage.setPassword("Password123");
-        System.out.println("🔹 Şifre dolduruldu");
+    @And("user types password as {string}")
+    public void userTypesPasswordAs(String password) {
+        loginPage.setPassword(password);
+        System.out.println("🔹 Şifre girildi: " + password);
     }
 
     @When("click button")
     public void clickButton() {
         loginPage.clickButton();
-        System.out.println("🔹 Butona tıklandı");
+        System.out.println("🔹 Giriş butonuna tıklandı");
     }
 
     @Then("assert to success message")
     public void assertToSuccessMessage() {
         loginPage.assertToSuccessMessage();
-        System.out.println("🔹 Başarılı mesajı göründü");
-        MyDriver.closeDriver(); // Test sonunda tarayıcıyı kapatır
+        System.out.println("🔹 Başarılı giriş mesajı göründü");
+        MyDriver.closeDriver();
     }
 }
