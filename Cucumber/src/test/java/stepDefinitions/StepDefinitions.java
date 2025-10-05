@@ -4,11 +4,17 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.When;
 import io.cucumber.java.en.Then;
+import org.openqa.selenium.WebDriver;
+import utilities.MyDriver;
 
 public class StepDefinitions {
 
+    private WebDriver driver;
+
     @Given("go to login page")
     public void go_to_login_page() {
+        driver = MyDriver.getDriver();
+        driver.get("https://www.google.com"); // örnek URL
         System.out.println("Sayfaya gidildi");
     }
 
@@ -30,5 +36,6 @@ public class StepDefinitions {
     @Then("assert to success message")
     public void assert_to_success_message() {
         System.out.println("Başarılı mesajı göründü");
+        MyDriver.closeDriver(); // 🔹 test sonunda tarayıcıyı kapatır
     }
 }
