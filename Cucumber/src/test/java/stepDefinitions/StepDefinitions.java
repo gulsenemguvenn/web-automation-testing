@@ -9,7 +9,7 @@ import utilities.MyDriver;
 import pages.LoginPage;
 import java.time.Duration;
 
-public class MyStepDefinitions {
+public class StepDefinitions {
 
     private WebDriver driver;
     LoginPage loginPage;
