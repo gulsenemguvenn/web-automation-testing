@@ -1,5 +1,9 @@
 Feature: Example Scenario
-  Scenario Outline: Go to website and login test
+
+  Background:
+    Given setting driver
+
+  Scenario Outline: go to web site and login test
     Given go to login page
     And user types username as "<username>"
     And user types password as "<password>"
@@ -7,7 +11,10 @@ Feature: Example Scenario
     Then assert to success message
 
     Examples:
-      | username | password    |
-      | student  | Password123 |
-      | ali      | 123456      |
-      | gulsenem | random      |
+      | username | password     |
+      | student  | Password123  |
+
+  Scenario: home page loading test
+    Given go to home page
+    When wait two seconds
+    Then see "Hello" text
