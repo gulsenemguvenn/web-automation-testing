@@ -13,7 +13,7 @@ public class NTest extends BaseTest {
     public void searchTest() {
         driver.get("https://www.n11.com/");
         tabBarPage = new TabBarPage(driver);
-        tabBarPage.searchWord("Laptop");
+        tabBarPage.search("Laptop");
     }
 
     @Test(priority = 2)
